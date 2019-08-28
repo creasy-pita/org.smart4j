@@ -80,6 +80,7 @@ public final class DatabaseHelper {
             LOGGER.error("execute query failure", e);
             throw new RuntimeException(e);
         }
+        List<?> list = new ArrayList<Object>(1);
         return result;
     }
 

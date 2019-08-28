@@ -58,6 +58,7 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         ServletHelper.init(request, response);
         try {
             String requestMethod = request.getMethod().toLowerCase();
@@ -84,9 +85,13 @@ public class DispatcherServlet extends HttpServlet {
                     result = ReflectionUtil.invokeMethod(controllerBean, actionMethod, parameters);
                 }
 
+
+
                 if (result instanceof View) {
                     handleViewResult((View) result, request, response);
-                } else if (result instanceof Data) {
+                }
+                else if (result instanceof Data)
+                {
                     handleDataResult((Data) result, response);
                 }
             }

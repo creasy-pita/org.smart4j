@@ -25,6 +25,9 @@ public abstract class AspectProxy implements Proxy {
         begin();
         try {
             if (intercept(cls, method, params)) {
+                //**TBD 优化 if current aspect annotions @Pointcut or @before 等增强 读取该增强(advice)
+                //的Pointcut 表达式 中的连接点（joinpoint） 是否与当前的 method 匹配，
+                //不匹配则跳过before
                 before(cls, method, params);
                 result = proxyChain.doProxyChain();
                 after(cls, method, params, result);
